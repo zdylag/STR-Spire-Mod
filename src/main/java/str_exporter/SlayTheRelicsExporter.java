@@ -179,6 +179,7 @@ public class SlayTheRelicsExporter implements RelicGetSubscriber,
         if ((checkDeckNextUpdate && System.currentTimeMillis() - lastDeckCheck > MIN_DECK_CHECK_PERIOD_MILLIS) ||
                 System.currentTimeMillis() - lastDeckCheck > MAX_DECK_CHECK_PERIOD_MILLIS) {
 
+            logger.info(config.gson.toJson(deckJsonBuilder.buildMessage()));
             lastDeckCheck = System.currentTimeMillis();
             if (config.areCredentialsValid()) {
                 broadcastDeck();

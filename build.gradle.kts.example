@@ -10,14 +10,12 @@ Setup environment variables
     - NOTE: these compileOnlyLibs are not included in the JAR, so you will get runtime
       errors if you try and call code that won't exist on the client.
  */
-var steamappsLocation: String = ""
-var stsInstallLocation: String = ""
+var stsInstallLocation: String = "/mnt/c/Program Files (x86)/Steam/steamapps/common/SlayTheSpire"
+var workshopLocation: String = "./localjars"
 
-var workshopLocation: String = "$steamappsLocation/workshop/content/646570"
-
-var modTheSpireLocation: String = "$workshopLocation/1605060445/ModTheSpire.jar"
-var baseModLocation: String = "$workshopLocation/1605833019/BaseMod.jar"
-var stsJar: String = "$stsInstallLocation/desktop-1.0.jar"
+var modTheSpireLocation: String = "$workshopLocation/ModTheSpire.jar"
+var baseModLocation: String = "$workshopLocation/BaseMod.jar"
+var stsJar: String = "$workshopLocation/desktop-1.0.jar"
 
 
 // Uses the value written in settings.gradle
@@ -42,6 +40,11 @@ tasks.register("srcsets") {
 }
 
 // --------------------------------------------------------------------------------
+
+configure<JavaPluginExtension> {
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
+}
 
 tasks.register<Jar>("buildJAR") {
     group = "Slay the Spire"
